@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800;900&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --orto-primary: #FF3366;
+    --orto-primary-hover: #FF1A53;
+    --orto-secondary: #00C2D1;
+    --orto-yellow: #FFD166;
+    --orto-green: #06D6A0;
+    --orto-bg: #FAFAFA;
+    --orto-pastel-blue: #E0FBFC;
+    --orto-pastel-pink: #FFE5EC;
+    --orto-pastel-purple: #E8DFF5;
+    --orto-dark: #1A1B41;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: auto;
+}
+
+body {
+    margin: 0;
+    font-family: 'Nunito', sans-serif;
+    color: var(--orto-dark);
+    background-color: var(--orto-bg);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.font-display {
+    font-family: 'Fredoka', sans-serif;
+}
+
+/* Dotted texture background */
+.dot-grid {
+    background-image: radial-gradient(rgba(26, 27, 65, 0.10) 1.4px, transparent 1.4px);
+    background-size: 22px 22px;
+}
+
+/* Selection */
+::selection {
+    background: var(--orto-yellow);
+    color: var(--orto-dark);
+}
+
+/* Marquee outline text */
+.text-stroke {
+    -webkit-text-stroke: 2px var(--orto-dark);
+    color: transparent;
+}
+
+/* Custom scrollbar for options panel */
+.orto-scroll::-webkit-scrollbar {
+    width: 10px;
+}
+.orto-scroll::-webkit-scrollbar-track {
+    background: var(--orto-pastel-purple);
+    border-radius: 20px;
+}
+.orto-scroll::-webkit-scrollbar-thumb {
+    background: var(--orto-primary);
+    border-radius: 20px;
+    border: 2px solid var(--orto-pastel-purple);
+}
+
+@layer base {
+    :root {
+        --background: 0 0% 100%;
+        --foreground: 240 45% 18%;
+        --card: 0 0% 100%;
+        --card-foreground: 240 45% 18%;
+        --popover: 0 0% 100%;
+        --popover-foreground: 240 45% 18%;
+        --primary: 344 100% 60%;
+        --primary-foreground: 0 0% 100%;
+        --secondary: 186 100% 41%;
+        --secondary-foreground: 0 0% 100%;
+        --muted: 0 0% 96.1%;
+        --muted-foreground: 240 20% 40%;
+        --accent: 43 100% 70%;
+        --accent-foreground: 240 45% 18%;
+        --destructive: 0 84.2% 60.2%;
+        --destructive-foreground: 0 0% 98%;
+        --border: 240 45% 18%;
+        --input: 240 20% 88%;
+        --ring: 344 100% 60%;
+        --radius: 1rem;
+    }
+}

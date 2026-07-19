@@ -1,0 +1,118 @@
+{
+  "theme_preference": "light",
+  "typography": {
+    "headings": {
+      "fontFamily": "'Fredoka', sans-serif",
+      "weights": ["700"],
+      "usage": "Use for all headlines (Hero, section titles). Apply tracking-tight for a bubbly, compact feel."
+    },
+    "body": {
+      "fontFamily": "'Nunito', sans-serif",
+      "weights": ["400", "700", "900"],
+      "usage": "Use for body copy, paragraphs, button text, and input labels. Very legible and friendly."
+    }
+  },
+  "colors": {
+    "primary": "#FF3366",
+    "primary_hover": "#FF1A53",
+    "secondary": "#00C2D1",
+    "accent_yellow": "#FFD166",
+    "accent_green": "#06D6A0",
+    "background_main": "#FAFAFA",
+    "background_pastel_blue": "#E0FBFC",
+    "background_pastel_pink": "#FFE5EC",
+    "background_pastel_purple": "#E8DFF5",
+    "text_dark": "#1A1B41",
+    "border_dark": "#1A1B41"
+  },
+  "visual_enhancers": {
+    "borders_and_shadows": "Neo-brutalist / Playful. Use solid offset shadows (e.g., shadow-[4px_4px_0px_#1A1B41]) and thick borders (border-2 or border-4) with the dark text color for a sticker/comic vibe.",
+    "border_radius": "Extremely rounded to feel soft and safe for kids. rounded-full for pills/buttons, rounded-3xl for cards.",
+    "textures": "Include subtle noise or dot-grid patterns on pastel backgrounds to give a tactile, premium feel and avoid digital flatness.",
+    "forbidden": "No transparent header backgrounds that overlap content unreadably. No thin, fragile borders."
+  },
+  "component_guidelines": {
+    "buttons": "Thick border, solid offset shadow, pill-shaped, bold text. Hover states should translate down (translate-y-1) and remove shadow to feel like pressing a physical tactile button.",
+    "cards": "Pastel backgrounds, thick dark borders, rounded-3xl. Interactive cards (like products) should scale up slightly on hover.",
+    "inputs": "Thick borders, large padding (p-4), rounded-xl. Focus state: ring-4 with primary pink color. Avoid native default select arrows.",
+    "customizer_panel": "Scrollable right-hand panel with distinct sections for Colors, Characters, Size, and Name. Use large touch-friendly circular targets for colors."
+  },
+  "grids": {
+    "features": "Bento Grid (Mode A: Tetris Grid). Asymmetric layout with one large featured block (e.g., 'Soporte Ortopédico') and smaller supporting blocks. Gap-8.",
+    "catalog": "3-column grid on desktop, 1-column mobile. Gap-6. Give each item a soft pastel background card."
+  },
+  "layouts": {
+    "hero": "Center aligned massive kinetic text, layered with a giant floating shoe image. Include the 'DISEÑA TUS TENIS' CTA prominently. Use overflow-hidden carefully to let elements overlap.",
+    "customizer": "Desktop: 2 columns (sticky preview 50%, scrollable options 50%). Mobile: Stacked with preview sticky at top.",
+    "manifesto": "Alternating left/right image and text blocks with massive decorative numbers (01, 02, 03) anchoring the background of each section."
+  },
+  "motion": {
+    "hero_reveal": "Masked line-by-line reveal for the H1 using Framer Motion (stagger children).",
+    "scrolling": "Lenis smooth scroll integration is mandatory for that premium feel.",
+    "physics": "Bouncy, energetic spring animations. type: 'spring', stiffness: 200, damping: 15."
+  },
+  "accessibility": {
+    "focus_states": "High contrast rings (ring-4 ring-pink-500) around inputs and buttons.",
+    "color_contrast": "Ensure text over pastel backgrounds uses the dark text color (#1A1B41) instead of white, for maximum APCA contrast.",
+    "testing": "All interactive and key informational elements MUST include a data-testid attribute."
+  },
+  "media": {
+    "treatment": "Images should have rounded corners (rounded-2xl) and thick dark borders matching the playful aesthetic. Cut-out PNGs of shoes should float with a heavy drop-shadow."
+  },
+  "3d_libraries": {
+    "recommendation": "Use Framer Motion with 2D cutouts and z-index layering for parallax and floating depth. It guarantees high performance and fits the vibrant playful aesthetic perfectly without needing WebGL."
+  },
+  "image_urls": [
+    {
+      "url": "https://images.unsplash.com/photo-1560769629-975ec94e6a86?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzNzl8MHwxfHNlYXJjaHwxfHxjb2xvcmZ1bCUyMGtpZHMlMjBzbmVha2Vyc3xlbnwwfHx8fDE3ODQyNDQyNjR8MA&ixlib=rb-4.1.0&q=85",
+      "category": "hero",
+      "description": "White and orange athletic shoe - Great for the hero image bursting through the text."
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1624958797025-b119e2fa2b53?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzNzl8MHwxfHNlYXJjaHw0fHxjb2xvcmZ1bCUyMGtpZHMlMjBzbmVha2Vyc3xlbnwwfHx8fDE3ODQyNDQyNjR8MA&ixlib=rb-4.1.0&q=85",
+      "category": "product_catalog",
+      "description": "Blue and pink nike sneakers."
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1678192568478-9488ee55def6?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzNzl8MHwxfHNlYXJjaHwyfHxjb2xvcmZ1bCUyMGtpZHMlMjBzbmVha2Vyc3xlbnwwfHx8fDE3ODQyNDQyNjR8MA&ixlib=rb-4.1.0&q=85",
+      "category": "product_catalog",
+      "description": "Pair of blue shoes."
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1637195789209-817e404c468c?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NzR8MHwxfHNlYXJjaHwxfHxoYXBweSUyMGNoaWxkJTIwcnVubmluZyUyMG91dGRvb3JzfGVufDB8fHx8MTc4NDI0NDI2M3ww&ixlib=rb-4.1.0&q=85",
+      "category": "manifesto",
+      "description": "Young girl running in grass - For 'Máxima Comodidad' manifesto chapter."
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1639628735078-ed2f038a193e?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA2MTJ8MHwxfHNlYXJjaHwxfHxjdXRlJTIwY29sb3JmdWwlMjAzZCUyMGNoYXJhY3RlcnxlbnwwfHx8fDE3ODQyNDQyNjR8MA&ixlib=rb-4.1.0&q=85",
+      "category": "customizer_options",
+      "description": "Orange cartoon character - Selectable character patch for personalization."
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1638803040283-7a5ffd48dad5?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA2MTJ8MHwxfHNlYXJjaHwyfHxjdXRlJTIwY29sb3JmdWwlMjAzZCUyMGNoYXJhY3RlcnxlbnwwfHx8fDE3ODQyNDQyNjR8MA&ixlib=rb-4.1.0&q=85",
+      "category": "customizer_options",
+      "description": "Blue character with hat - Selectable character patch for personalization."
+    }
+  ],
+  "instructions_to_main_agent": [
+    "Use pure React JS (.jsx/.js files), NOT TypeScript (.tsx/.ts). Avoid TS types entirely.",
+    "Integrate Google Fonts 'Fredoka' and 'Nunito' into the global CSS/HTML.",
+    "Implement Lenis smooth scrolling for a premium, award-winning feel.",
+    "Use framer-motion heavily. Elements should bounce into place using 'spring' animations (stiffness: 200, damping: 15).",
+    "Build the interactive 'Diseñador de Tenis' (Shoe Customizer): left side sticky preview of the shoe that changes color/theme dynamically (e.g., using CSS hue-rotate or overlay blending), right side scrollable config.",
+    "For the 'DISEÑA TUS TENIS' CTA in the hero, make it massively visible with a bouncy hover state.",
+    "Use lucide-react icons but set strokeWidth={3} to match the bubbly aesthetic.",
+    "Implement a fast marquee using react-fast-marquee with alternating solid and stroke-outline text (e.g., text-transparent outline-2).",
+    "Store customizer form and contact form submissions in the simulated/mock DB. Ensure the submission UX has a success toast using Sonner.",
+    "All copy MUST be in Spanish as requested ('Inicio', 'Productos', 'Blog', 'Contacto', 'Diseña Tus Tenis')."
+  ],
+  "UNIVERSAL_GUIDELINES_FOR_MAIN_AGENT": [
+    "Do not use generic, centered, flat layouts. Layer elements with z-index hierarchy and negative space.",
+    "Every interaction needs micro-animations (hover states, transitions). Static = dead.",
+    "Do not apply `transition: all` universally as it breaks framer-motion transforms.",
+    "Use 2-3x more spacing than feels comfortable. Cramped designs look cheap.",
+    "Never use AI assistant Emoji characters (e.g., 🤖🧠💭💡) for icons. Rely on Lucide.",
+    "All interactive and key informational elements MUST include a data-testid attribute.",
+    "Do not center-align the main App container."
+  ]
+}

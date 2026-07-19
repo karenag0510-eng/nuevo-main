@@ -1,0 +1,60 @@
+/* Ortoook global helpers */
+.App {
+    text-align: left;
+    overflow-x: hidden;
+}
+
+@keyframes float-slow {
+    0%, 100% { transform: translateY(0) rotate(-6deg); }
+    50% { transform: translateY(-22px) rotate(-2deg); }
+}
+.animate-float-slow {
+    animation: float-slow 6s ease-in-out infinite;
+}
+
+@keyframes spin-slow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+.animate-spin-slow {
+    animation: spin-slow 26s linear infinite;
+}
+
+/* Wiggle for playful icons/stickers */
+@keyframes wiggle {
+    0%, 100% { transform: rotate(-4deg); }
+    50% { transform: rotate(4deg); }
+}
+.animate-wiggle {
+    animation: wiggle 1.6s ease-in-out infinite;
+}
+
+/* Gentle bob up & down */
+@keyframes bob {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-14px); }
+}
+.animate-bob { animation: bob 3.5s ease-in-out infinite; }
+.animate-bob-slow { animation: bob 5s ease-in-out infinite; }
+
+/* Morphing blob background shapes */
+@keyframes blob {
+    0%, 100% { border-radius: 42% 58% 63% 37% / 42% 45% 55% 58%; }
+    33% { border-radius: 60% 40% 34% 66% / 55% 62% 38% 45%; }
+    66% { border-radius: 35% 65% 55% 45% / 55% 38% 62% 45%; }
+}
+.animate-blob { animation: blob 9s ease-in-out infinite; }
+
+/* Rainbow moving text */
+@keyframes rainbow-shift {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 200% 50%; }
+}
+.text-rainbow {
+    background: linear-gradient(90deg, #FF3366, #FFD166, #06D6A0, #00C2D1, #8B5CF6, #FF3366);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: rainbow-shift 5s linear infinite;
+}

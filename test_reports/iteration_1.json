@@ -1,0 +1,25 @@
+{
+  "summary": "Full end-to-end MVP smoke test for Ortoook. Backend (GET /api/, POST/GET /api/contact, POST/GET /api/designs) verified via curl — all 200 with correct schema. UI verified via Playwright: homepage/hero/navbar/catalog render; Personalizar scrolls to customizer; all customizer option groups (modelo, color, suela, personaje, talla) selectable via data-testid; validation and successful submissions both fire toasts. Contact form validation + success submission verified. DB persistence confirmed: contacts and designs collections both grew from 1→3 after curl and UI submissions; latest records show data from UI test ('Mama QA' / 'Lucia', 'QA Bot').",
+  "tested_scope": ["frontend", "backend", "integration"],
+  "passed": [
+    "GET /api/ 200 -> {message: 'Ortoook API viva'}",
+    "POST /api/contact 200 with correct Contact schema (id, created_at)",
+    "POST /api/designs 200 with correct Design schema",
+    "GET /api/contact and GET /api/designs return persisted records",
+    "Homepage loads with hero 'Pasos felices, pies sanos' and 'Diseña tus tenis' CTA",
+    "Navbar shows Ortoook logo + Inicio/Productos/Diseña/Historia/Contacto",
+    "Catalog renders 3 products (Nube Runner, Aqua Splash, Solar Pop) with 3 Personalizar buttons",
+    "Personalizar click smooth-scrolls to #disena",
+    "Customizer options counts: modelo=3, color=8, suela=5, personaje=8, talla=11; all selectable",
+    "Customizer empty submit -> error toast: 'Por favor escribe tu nombre y teléfono para el pedido'",
+    "Customizer valid submit -> success toast '¡Diseño enviado! Te contactaremos muy pronto 🎉' and record persisted in DB",
+    "Contact empty submit -> error toast: 'Completa nombre, correo y mensaje'",
+    "Contact valid submit -> success toast '¡Mensaje enviado! Te responderemos pronto 💌' and record persisted in DB"
+  ],
+  "failed": [],
+  "action_items": [],
+  "success_rate": {"backend": "100%", "frontend": "100%"},
+  "retest_needed": false,
+  "full_testing_deferred": true,
+  "notes": "Nav link visibility check initially failed only due to a strict get_by_role('link') selector; screenshot confirms nav items render correctly. No app-side issue."
+}

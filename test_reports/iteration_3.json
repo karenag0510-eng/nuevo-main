@@ -1,0 +1,36 @@
+{
+  "summary": "Iteration 3 delta testing (Catálogo rename, real photo in Hero + Customizer, live color tint of real shoe photo). Backend: 6/6 pytest cases still passing (health, contact, designs with color_acento, validation). Frontend: 19/21 checks passed. Confirmed: Navbar label renamed to 'Catálogo' (data-testid still nav-productos) and its click smooth-scrolls to #productos; Hero and Customizer both use the real product photo (0f5dh8f6_Image.png); accent 'Franjas' chip live-updates when opt-acento-* is picked; personaje badge SVG appears; nombre-nino ribbon appears; empty-required submit shows error toast; valid submit persists to /api/designs with color_acento and shows success toast + confetti; catalog renders all 5 real products with Personalizar buttons; contact form persists. BUG FOUND: the main color-principal tint layer in ShoePreview.jsx does NOT unmount the initial (default Rosa Chicle #FF3366) overlay when the user picks another color — subsequent picks correctly swap among themselves, but the very first Rosa overlay stays in the DOM stacked with mix-blend-mode: multiply on top of the newly selected color. Visual effect: after picking Turquesa the shoe looks purple/blue (Rosa*Turquesa), after Verde Menta the shoe looks muddy greenish-grey, etc.",
+  "backend_issues": { "critical": [], "minor": [] },
+  "frontend_issues": {
+    "ui_bugs": [
+      {
+        "component": "ShoePreview.jsx (Customizer live preview)",
+        "issue": "Initial color-principal <motion.div> overlay is never unmounted after color change. Two multiply overlays stack (default Rosa Chicle rgb(255,51,102) + selected color), producing wrong final tint. DOM verified: container children count goes from 5 -> 6 after first color change and stays at 6 for every subsequent change (the orphan Rosa layer persists). Screenshot shows Turquesa selected but shoe appears purple.",
+        "selector": "[data-testid=\"customizer-preview\"] div[style*=\"mix-blend-mode: multiply\"]",
+        "priority": "HIGH"
+      }
+    ],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [
+    "/app/backend/tests/backend_test.py",
+    "/app/test_reports/pytest/pytest_results.xml"
+  ],
+  "action_items": [
+    "Fix ShoePreview.jsx color-principal tint layer: replace the `key={colorPrincipal}` motion.div pattern with either (a) a single stable motion.div using `animate={{ backgroundColor: colorPrincipal }}`, or (b) wrap it in <AnimatePresence mode=\"wait\"> so the previous overlay is properly unmounted before the new one mounts. Currently the first-mounted Rosa Chicle overlay persists in the DOM and multiplies with every subsequent selection, producing incorrect final tints."
+  ],
+  "critical_code_review_comments": [
+    "ShoePreview.jsx line 29-38: key-change on motion.div without AnimatePresence is not reliably unmounting; use AnimatePresence mode='wait' or animate background via `animate` prop to avoid stacked overlays.",
+    "server.py remains small and clean; no _id leaks (projections use {_id:0}). No changes needed.",
+    "Consider adding an accessible alt text or aria-label difference between hero and customizer <img> since both use the same PREVIEW_IMG/HERO_IMG URL."
+  ],
+  "updated_files": [],
+  "success_rate": { "backend": "100%", "frontend": "90%" },
+  "test_credentials": "N/A - app has no auth",
+  "seed_data_creation": "Added TEST_-prefixed rows via UI + pytest: 1 design (TEST_QA Iter3 Cliente, qa_iter3@test.com), 1 contact (qa_iter3_contact@test.com), plus 2 pytest-generated designs and 1 pytest-generated contact.",
+  "retest_needed": true,
+  "main_agent_can_self_test": true,
+  "context_for_next_testing_agent": "Backend regression pytest at /app/backend/tests/backend_test.py is green (6/6). The only outstanding issue is a visual bug in the customizer live-preview color tint: the initial Rosa Chicle overlay in ShoePreview.jsx is never unmounted, so it stacks (mix-blend-mode: multiply) with every subsequent color pick. DOM inspection confirms container children count 5 -> 6 on first change and stays at 6. To retest the fix: open #disena, verify DOM under [data-testid='customizer-preview'] img.parentElement has exactly ONE div with mix-blend-mode: multiply after selecting any color; and visually the shoe should clearly take the selected hue (Turquesa should look turquoise, not purple).",
+  "rca of the issue": "Root cause: In /app/frontend/src/components/ShoePreview.jsx (lines 29-38), the main color tint is rendered as `<motion.div key={colorPrincipal} initial={{opacity:0}} animate={{opacity:0.62}} ... />` conditionally on !isWhite(colorPrincipal). When the user changes color, React sees the same conditional (still !isWhite) with a new key; it should unmount the old element and mount a new one. However, framer-motion's active animation lifecycle appears to keep the previously-mounted element alive (no AnimatePresence to orchestrate exit). Empirically, only the FIRST mount is orphaned — subsequent key swaps correctly replace each other. Reproduction: (1) load /#disena, (2) inspect img.parentElement.children.length -> 5, (3) click any opt-color-* other than default -> length becomes 6 with both rgb(255,51,102) and the new color as siblings, both with mix-blend-mode multiply, both opacity 0.62, (4) click a third color -> length stays 6, the second overlay swaps but the first Rosa Chicle overlay remains. Mitigation: wrap the conditional motion.div in `<AnimatePresence mode=\"wait\">` and re-run — or simplify to a single motion.div and animate `backgroundColor` via the `animate` prop (no key)."
+}
